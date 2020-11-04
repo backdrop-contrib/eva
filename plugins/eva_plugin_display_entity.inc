@@ -8,7 +8,7 @@ class eva_plugin_display_entity extends views_plugin_display {
   /**
    * {@inheritdoc}
    */
-  function option_definition() {
+  public function option_definition() {
     $options = parent::option_definition();
 
     $options['entity_type'] = array('default' => '');
@@ -27,7 +27,7 @@ class eva_plugin_display_entity extends views_plugin_display {
    *
    * This output is returned as an array.
    */
-  function options_summary(&$categories, &$options) {
+  public function options_summary(&$categories, &$options) {
     // It is very important to call the parent function here:
     parent::options_summary($categories, $options);
 
@@ -85,18 +85,13 @@ class eva_plugin_display_entity extends views_plugin_display {
       'value' => $this->get_option('exposed_form_as_field') ? t('Yes') : t('No'),
     );
 
-    if (module_exists('token')) {
-      // We must load token values here to show them on the options form.
-      drupal_add_js(drupal_get_path('module', 'token') . '/token.js');
-      drupal_add_css(drupal_get_path('module', 'token') . '/token.css');
-      drupal_add_library('token', 'treeTable');
-    }
+    backdrop_add_library('token', 'treeTable');
   }
 
   /**
    * Provide the default form for setting options.
    */
-  function options_form(&$form, &$form_state) {
+  public function options_form(&$form, &$form_state) {
     // It is very important to call the parent function here:
     parent::options_form($form, $form_state);
 
@@ -216,7 +211,7 @@ class eva_plugin_display_entity extends views_plugin_display {
   /**
    * {@inheritdoc}
    */
-  function options_submit(&$form, &$form_state) {
+  public function options_submit(&$form, &$form_state) {
     // It is very important to call the parent function here:
     parent::options_submit($form, $form_state);
 
@@ -270,7 +265,7 @@ class eva_plugin_display_entity extends views_plugin_display {
   /**
    * {@inheritdoc}
    */
-  function validate() {
+  public function validate() {
     $errors = parent::validate();
 
     $entity_type = $this->get_option('entity_type');
@@ -283,7 +278,7 @@ class eva_plugin_display_entity extends views_plugin_display {
   /**
    * Specify the path of the entity.
    */
-  function get_path() {
+  public function get_path() {
     if (($path = parent::get_path())) {
       return $path;
     }
@@ -300,7 +295,7 @@ class eva_plugin_display_entity extends views_plugin_display {
   /**
    * The display block handler returns the structure necessary for a block.
    */
-  function execute() {
+  public function execute() {
     // Prior to this being called, the $view should already be set to this
     // display, and arguments should be set on the view.
     if (!isset($this->view->override_path)) {
