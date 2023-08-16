@@ -5,6 +5,9 @@
  * Preprocess handlers for theme functions
  */
 
+/**
+ * Implements preprocess handler.
+ */
 function template_preprocess_eva_display_entity_view(&$variables) {
   template_preprocess_views_view($variables);
   $view = $variables['view'];
@@ -15,8 +18,3 @@ function template_preprocess_eva_display_entity_view(&$variables) {
   }
   $variables['exposed_form_as_field'] = $display->get_option('exposed_form_as_field');
 }
-
-function template_process_eva_display_entity_view(&$variables) {
-  template_process_views_view($variables);
-}
-
