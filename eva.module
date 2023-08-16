@@ -44,14 +44,14 @@ function eva_field_extra_fields() {
         $extras[$entity][$bundle][$context][$view['name'] . '_' . $view['display']] = array(
           'label' => (empty($view['title'])) ? $view['name'] : $view['title'],
           'description' => $view['title'],
-          'weight' => 10,
+          'weight' => 100,
         );
         // Provide a separate extra field for the exposed form if there is any.
         if ($context == 'display' && !empty($view['exposed form']) && !empty($view['exposed form split'])) {
           $extras[$entity][$bundle][$context][$view['name'] . '_' . $view[$context] . '_' . 'form'] = array(
             'label' => ((empty($view['title'])) ? $view['name'] : $view['title']) . ' (' . t('Exposed form') . ')',
             'description' => t('The exposed filter form of the view.'),
-            'weight' => 9,
+            'weight' => 99,
           );
         }
       }
